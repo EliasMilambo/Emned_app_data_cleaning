@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Elias Milambo(Emned)" />
+    <title>Emned Data - {% block title %}{% endblock %}</title>
+
+    <!-- CDNs de Tailwind CSS et DaisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-base-300 text-base-content font-sans flex flex-col">
+
+    <!-- Barre de Navigation -->
+    <header class="navbar bg-base-100 shadow-md px-4 sm:px-8">
+        <div class="flex-1">
+            <a class="text-xl font-mono font-bold tracking-wider text-primary" href="/">
+                ⚡ EMNED<span class="text-neutral-content font-light">_DATA</span>
+            </a>
+        </div>
+        <div class="flex-none gap-4">
+            <span class="badge badge-success gap-1.5 font-mono text-xs py-2">
+                <span class="h-2 w-2 rounded-full bg-current animate-pulse"></span>
+                DevOps Mode
+            </span>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar placeholder">
+                    <div class="bg-neutral text-neutral-content rounded-full w-10">
+                        <span class="text-xs font-mono">EM</span>
+                    </div>
+                </div>
+                <ul tabindex="0" class="mt-3 z-50 p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52">
+                    <li><a href="#" class="text-error">Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Système de notifications Django -->
+    {% if messages %}
+    <div class="container mx-auto max-w-4xl px-4 mt-4 space-y-2">
+        {% for message in messages %}
+        <div role="alert" class="alert {% if message.tags == 'error' %}alert-error{% elif message.tags == 'success' %}alert-success{% else %}alert-info{% endif %} shadow-lg">
+            <span>{{ message }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Conteneur Principal pour le contenu des autres pages -->
+    <main class="flex-grow container mx-auto max-w-6xl px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-4 bg-base-100 text-base-content/60 font-mono text-xs border-t border-base-200">
+        <aside>
+            <p>© 2026 <a href="https://emned.com" target="_blank">Emned Empire</a> - Infrastructure & Logiciels</p>
+        </aside>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Nettoyage Django + Pandas{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto my-12">
+    <!-- Carte Principale -->
+    <div class="card bg-base-100 shadow-2xl border border-base-200">
+        <div class="card-body p-8 sm:p-10 text-center">
+
+            <!-- Badge Techno -->
+            <div class="flex justify-center gap-2 mb-4">
+                <span class="badge badge-primary font-mono text-xs px-3 py-2">Django 6.0</span>
+                <span class="badge badge-accent font-mono text-xs px-3 py-2">Pandas Engine</span>
+            </div>
+
+            <!-- Titre et Description -->
+            <h2 class="card-title justify-center text-2xl font-bold tracking-tight text-white mb-2">
+               Demo: Django + Pandas Cleanup
+            </h2>
+            <p class="text-sm text-base-content/70 max-w-md mx-auto mb-8">
+                Upload an Excel or CSV file. The Python script instantly removes duplicates and all empty rows.
+            </p>
+
+            <!-- Formulaire de Traitement -->
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Zone d'upload stylisée -->
+                <div class="form-control w-100">
+                    <label class="label justify-center pb-2">
+                        <span class="label-text-alt font-mono text-base-content/50">Formats accepted : .xlsx, .xls, .csv</span>
+                    </label>
+                    <input type="file"
+                           name="fichier_excel"
+                           accept=".xlsx, .xls, .csv"
+                           required
+                           class="file-input file-input-bordered file-input-primary w-full bg-base-200 font-sans" />
+                </div>
+
+                <!-- Bouton d'action principal -->
+                <div class="card-actions pt-2">
+                    <button type="submit" class="btn btn-primary btn-block text-white font-bold tracking-wide group">
+                        <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2 animate-bounce">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                        </svg>
+                        Clean and download the clean file
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
